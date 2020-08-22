@@ -1,0 +1,574 @@
+<html>
+<head>
+<title>Drop-down Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#more {display: none;}
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+    <body>
+       <!-----NavigationBar---->
+<section id="nav-bar">
+ <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#"><img src="logo.jpg"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#top"><i class="fa fa-home"></i>HOME <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#about"><i class="fa fa-users"></i>ABOUT US</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#verses"><i class="fa fa-book"></i>VERSES</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i>VIDEOS</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#videos">Video</a>
+          <a class="dropdown-item" href="#testimonies">Testmonies</a>
+          <a class="dropdown-item" href="#talents">Talents</a>
+        </div>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#team"><i class="fa fa-user"></i>OUR TEAM</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#contact"><i class="fa fa-phone"></i>CONTACT</a>
+      </li>
+    </ul>
+       <div class="wrapper">
+    <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+    <input class="search" placeholder="Search" type="text" >
+           <a class="search-icon" href="#videos"></a>
+  </div>  
+  </div>
+</nav>
+</section>
+        <!-------slide------->
+<div id="slide">
+    <div id="headerSlider" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#headerSlider" data-slide-to="0" class="active"></li>
+    <li data-target="#headerSlider" data-slide-to="1" class="active"></li>
+    <li data-target="#headerSlider" data-slide-to="2" class="active"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="union.jpg">
+        <div class="carousel-caption">
+            <h5>How to consecrate or dedicate yourself to God</h5>
+        </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="hold.jpg">
+        <div class="carousel-caption">
+            <h5>How to live in Christ as teenagers</h5>
+        </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-150" src="Reading.jpg">
+        <div class="carousel-caption">
+            <h5>How to grow in Christ as teenagers</h5>
+        </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#headerSlider" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#headerSlider" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+        <!-------About------->
+<section id="about">
+<div class="container">
+<div class="row">
+<div class="col md-6">
+<h2>About Us</h2>
+<p>Here to help people to be rooted and stand firm in their faith as Christians.<span id="dots">...</span><span id="more"> To act as an anchor in your relationship with God.</span></p>
+<button onclick="myFunction()" id="myBtn">Read more>></button>
+<script>
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more>>"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+</script>
+    
+</div>
+</div>
+</div>
+</section>
+    <!--------Verses------->
+    <section id="verses">
+        <div class="container">
+        <h1>Your Verse</h1>
+            <div class="row verses">
+                <div class="col-md-3 text-center">
+                    <div class="img-box">
+                    <img class="small" src="0003"  class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="img-box">
+                    <img src="rom.jpg"  class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="img-box">
+                    <img src="AAA.jpg"  class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="img-box">
+                    <img src="bbb.jpg"  class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="img-box">
+                    <img src="ccc.jpg"  class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="img-box">
+                    <img src="dddd.jpg"  class="img-responsive">
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-4 text-center">
+                    <div class="img-box">
+                    <img src="fff.jpg"  class="img-responsive">
+                    </div>
+                </div>
+                 <div class="col-md-3 test-center">
+                    <div class="img-box">
+                    <img src="GGG.jpg"  class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---------------Videos----------->
+<section id="videos">
+<div class="container">
+<h1>Videos</h1>  
+<p class="row">THE TESTIMONIES OF TEENAGES WHO LOVE GOD AND DEDICATE THEMSELVES TO HIM AND LIVE IN JESUS CHRIST AS LORD AND SAVIOR OF THEIR LIVES.</p>
+<div class="row">
+ <div class="col-md-6 text-center">
+    <div class="profile">
+        <video width="500" controls autoplay loop muted>
+            <source src="video%20(6).mp4" type="video/mp4">
+        </video>
+        <body>  
+    <div class="info">
+      <label for="example">Comment
+      </label>
+      <input id="example" type="text"
+             name="Ntext" size="20">
+      <input id="sent" type="submit"  
+             value="Send"> 
+  </div>
+    <p id="para">      
+    </p>
+  </body>
+  <script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;   
+     if (id === 'sent')  
+     { var txt = document.getElementById('example').value    
+       $( "#para" ).empty().append( txt );
+     }
+    }
+  </script>
+        <blockquote>Meanning of salvation.</blockquote>
+        <h3>Ngabonziza Omer Tristan <span>Teenager from ERC </span></h3>
+    </div>
+ </div>
+     <div class="col-md-6 text-center">
+    <div class="profile">
+        <video width="500" controls autoplay loop muted>
+            <source src="video%20(1).mp4" type="video/mp4">
+        </video>
+        <body>  
+    <div class="info">
+      <label for="example">Comment
+      </label>
+      <input id="example" type="text"
+             name="Ntext" size="20">
+      <input id="sent" type="submit"  
+             value="Send"> 
+  </div>
+    <p id="para">      
+    </p>
+  </body>
+  <script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;   
+     if (id === 'sent')  
+     { var txt = document.getElementById('example').value    
+       $( "#para" ).empty().append( txt );
+     }
+    }
+  </script>
+        <blockquote>Meanning of salvation.</blockquote>
+        <h3>Ngabonziza Omer Tristan <span>Teenager from ERC </span></h3>
+    </div>
+ </div>
+</div>
+</div>
+    </section>
+ <!---------------Testimonies----------->
+<section id="testimonies">
+<div class="container">
+<h1>Testimonies</h1>  
+<p class="row">THE TESTIMONIES OF TEENAGES WHO LOVE GOD AND DEDICATE THEMSELVES TO HIM AND LIVE IN JESUS CHRIST AS LORD AND SAVIOR OF THEIR LIVES.</p>
+<div class="row">
+     <div class="col-md-6 text-center">
+    <div class="profile">
+        <video width="500" controls autoplay loop muted>
+            <source src="video%20(4).mp4" type="video/mp4">
+        </video>
+        <body>  
+    <div class="info">
+      <label for="example">Comment
+      </label>
+      <input id="example" type="text"
+             name="Ntext" size="20">
+      <input id="sent" type="submit"  
+             value="Send"> 
+  </div>
+    <p id="para">      
+    </p>
+  </body>
+  <script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;   
+     if (id === 'sent')  
+     { var txt = document.getElementById('example').value    
+       $( "#para" ).empty().append( txt );
+     }
+    }
+  </script>
+        <blockquote>Meanning of salvation.</blockquote>
+        <h3>Ngabonziza Omer Tristan <span>Teenager from ERC </span></h3>
+    </div>
+ </div>
+     <div class="col-md-6 text-center">
+    <div class="profile">
+        <video width="500" controls autoplay loop muted>
+            <source src="video%20(5).mp4" type="video/mp4">
+        </video>
+        <body>  
+    <div class="info">
+      <label for="example">Comment
+      </label>
+      <input id="example" type="text"
+             name="Ntext" size="20">
+      <input id="sent" type="submit"  
+             value="Send"> 
+  </div>
+    <p id="para">      
+    </p>
+  </body>
+  <script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;   
+     if (id === 'sent')  
+     { var txt = document.getElementById('example').value    
+       $( "#para" ).empty().append( txt );
+     }
+    }
+  </script>
+        <blockquote>Meanning of salvation.</blockquote>
+        <h3>Ngabonziza Omer Tristan <span>Teenager from ERC </span></h3>
+    </div>
+ </div>
+</div>
+</div>
+</section>
+    <!---------------Talents----------->
+<section id="talents">
+<div class="container">
+<h1>Talents</h1>  
+<p class="row">THE TESTIMONIES OF TEENAGES WHO LOVE GOD AND DEDICATE THEMSELVES TO HIM AND LIVE IN JESUS CHRIST AS LORD AND SAVIOR OF THEIR LIVES.</p>
+<div class="row">
+     <div class="col-md-6 text-center">
+    <div class="profile">
+        <video width="500" controls autoplay loop muted>
+            <source src="video%20(2).mp4" type="video/mp4">
+        </video>
+        <body>  
+    <div class="info">
+      <label for="example">Comment
+      </label>
+      <input id="example" type="text"
+             name="Ntext" size="20">
+      <input id="sent" type="submit"  
+             value="Send"> 
+  </div>
+    <p id="para">      
+    </p>
+  </body>
+  <script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;   
+     if (id === 'sent')  
+     { var txt = document.getElementById('example').value    
+       $( "#para" ).empty().append( txt );
+     }
+    }
+  </script>
+        <blockquote>Meanning of salvation.</blockquote>
+        <h3>Ngabonziza Omer Tristan <span>Teenager from ERC </span></h3>
+    </div>
+ </div>
+     <div class="col-md-6 text-center">
+    <div class="profile">
+        <video width="500" controls autoplay loop muted>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <body>  
+    <div class="info">
+      <label for="example">Comment
+      </label>
+      <input id="example" type="text"
+             name="Ntext" size="20">
+      <input id="sent" type="submit"  
+             value="Send"> 
+  </div>
+    <p id="para">      
+    </p>
+  </body>
+  <script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;   
+     if (id === 'sent')  
+     { var txt = document.getElementById('example').value    
+       $( "#para" ).empty().append( txt );
+     }
+    }
+  </script>
+        <blockquote>Meanning of salvation.</blockquote>
+        <h3>Ngabonziza Omer Tristan <span>Teenager from ERC </span></h3>
+    </div>
+ </div>
+</div>
+</div>
+</section>
+    <!--------Team Members------->
+<section id="team">
+<div class="container">
+        <h1>Our Team</h1>
+        <div class="row">
+        <div class="col-md-3 profile-pic text-center">
+        <div class="img-box">
+        <img src="Omer.jpg" class="img-responsive"> 
+        <ul>
+        <a href="#"><li><i class="fa fa-facebook"></i></li></a>
+        <a href="#"><li><i class="fa fa-twitter"></i></li></a>
+        <a href="#"><li><i class="fa fa-instagram"></i></li></a>
+        </ul>
+        </div>
+            <h2>Ngabonziza Omer Tristan</h2>
+            <h3></h3>
+            <p>Born again</p>
+        </div>
+            <div class="col-md-3 profile-pic text-center">
+        <div class="img-box">
+        <img src="Alain.jpg" class="img-responsive"> 
+        <ul>
+        <a href="#"><li><i class="fa fa-facebook"></i></li></a>
+        <a href="#"><li><i class="fa fa-twitter"></i></li></a>
+        <a href="#"><li><i class="fa fa-instagram"></i></li></a>
+        </ul>
+        </div>
+            <h2>Umuganwa Alain</h2>
+            <h3></h3>
+            <p>Born again</p>
+        </div>
+            <div class="col-md-3 profile-pic text-center">
+        <div class="img-box">
+        <img src="Arsene.jpg" class="img-responsive"> 
+        <ul>
+        <a href="#"><li><i class="fa fa-facebook"></i></li></a>
+        <a href="#"><li><i class="fa fa-twitter"></i></li></a>
+        <a href="#"><li><i class="fa fa-instagram"></i></li></a>
+        </ul>
+        </div>
+            <h2>Usabamungu Arsene</h2>
+            <h3></h3>
+            <p>Born again</p>
+        </div>
+            <div class="col-md-3 profile-pic text-center">
+        <div class="img-box">
+        <img src="frank~1.jpg" class="img-responsive"> 
+        <ul>
+        <a href="#"><li><i class="fa fa-facebook"></i></li></a>
+        <a href="#"><li><i class="fa fa-twitter"></i></li></a>
+        <a href="#"><li><i class="fa fa-instagram"></i></li></a>
+        </ul>
+        </div>
+            <h2>Mahirwe Franck</h2>
+            <h3></h3>
+            <p>Born again</p>
+        </div>
+        </div>
+        </div>
+</section>
+<!------------promo--------->
+<section id="promo">
+<div class="container">
+    <p>Any questions, challenges, advice, opinion or suggestion etc.</p>
+    <a href="#contact" class="btn btn-primary">Contact Us</a>
+</div>
+</section>
+<!----------------- Get in Touch------------->
+<section id="contact">
+ <div class="container">
+    <h1>Get In Touch</h1>
+     <div class="row">
+         <div class="col-md-6">
+         <form class="contact-form">
+             <div class="form-group">
+             <input type="text" class="form-control" placeholder="Your Name">
+             </div>
+             <div class="form-group">
+             <input type="number" class="form-control" placeholder="Phone no.">
+             </div>
+             <div class="form-group">
+             <input type="email" class="form-control" placeholder="Email id">
+             </div>
+             <div class="form-group">
+             <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+             </div>
+             <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+             </form>
+         </div>
+         <div class="col-md-6 contact-info">
+             <div class="follow"><b>Address:</b><i class="fa fa-map-marker"></i>Kanombe, Kicukiro, Kigali</div>
+             <div class="follow"><b>Phone:</b><i class="fa fa-phone"></i>+250 787012380</div>
+             <div class="follow"><b>Email:</b><i class="fa fa-envelope-o"></i>christianitylife250@gmail.com</div>
+             <div class="follow"><label><b>Get Social:</b></label>
+                 <a href="#"><i class="fa fa-instagram"></i></a>
+                 <a href="#"><i class="fa fa-youtube-play"></i></a>
+                 <a href="#"><i class="fa fa-twitter"></i></a>
+                 <a href="#"><i class="fa fa-facebook"></i></a>
+             </div>
+         </div>
+     </div>
+ </div>
+</section>
+  <!------------------Footer---------->  
+    <section id="footer">
+        <div class="container text-center">
+            <p>Made by<i class="fa fa-hand-o-right"></i>Ngabonziza Omer Tristan</p>
+        </div>
+    </section>
+    <!------------------Footer End-------------->
+    <script src="js/smooth-scroll.js"></script>
+    <script>
+	var scroll = new SmoothScroll('a[href*="#"]');
+</script>
+    </body>
+</html>
